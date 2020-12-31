@@ -9,4 +9,6 @@
     <string name="technical_desc">Wide system of specialized words with many different majors</string>
     <string name="heading_begin_activity">The Best Platform for Online Learning</string>
     <string name="description_begin_activity">To improve their vocabulary, learners can actively practice through English vocabulary learning apps. Anna is an option not to be missed. Let\'s get started!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
