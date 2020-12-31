@@ -1,21 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/courses"
+        android:id="@+id/coursesFragment"
         android:enabled="true"
         android:icon="@drawable/icon_courses"
         android:title="Courses" />
     <item
-        android:id="@+id/lookup"
+        android:id="@+id/lookUpFragment"
         android:enabled="true"
         android:icon="@drawable/icon_lookup"
         android:title="Look up" />
     <item
-        android:id="@+id/scan"
+        android:id="@+id/scanFragment"
         android:enabled="true"
         android:icon="@drawable/icon_scan"
         android:title="Scan" />
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profileFragment"
         android:enabled="true"
         android:icon="@drawable/icon_profile"
         android:title="Profile" />
