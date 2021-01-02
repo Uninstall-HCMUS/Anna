@@ -8,19 +8,19 @@
         android:id="@+id/loginFragment"
         android:name="com.example.anna.LoginFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_profileFragment2"
+            android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.anna.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -34,7 +34,11 @@
         android:id="@+id/lookUpFragment"
         android:name="com.example.anna.LookUpFragment"
         android:label="fragment_look_up"
-        tools:layout="@layout/fragment_look_up" />
+        tools:layout="@layout/fragment_look_up">
+        <action
+            android:id="@+id/action_lookUpFragment_to_englishToVietnameseFragment"
+            app:destination="@id/englishToVietnameseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/scanFragment"
         android:name="com.example.anna.ScanFragment"
@@ -45,4 +49,9 @@
         android:name="com.example.anna.SignUpFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" />
+    <fragment
+        android:id="@+id/englishToVietnameseFragment"
+        android:name="com.example.anna.EnglishToVietnameseFragment"
+        android:label="fragment_english_to_vietnamese"
+        tools:layout="@layout/fragment_english_to_vietnamese" />
 </navigation>

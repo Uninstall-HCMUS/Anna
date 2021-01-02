@@ -3,14 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="40dp"
     tools:context=".LookUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/layout_EnglishToVietnamese"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Look Up"
-        android:gravity="center"
-        android:textSize="60sp"/>
+        android:layout_height="100dp"
+        android:background="@drawable/custom_select_layout"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/quicksand_bold"
+            android:gravity="center"
+            android:text="English To Vietnamese"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_VietnameseToEnglish"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/custom_select_layout"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/quicksand_bold"
+            android:gravity="center"
+            android:text="Vietnamese To English"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </LinearLayout>
+
 
 </LinearLayout>
