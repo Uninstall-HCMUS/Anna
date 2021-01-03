@@ -34,12 +34,14 @@
                 android:fontFamily="@font/quicksand_book"
                 android:text="Email"
                 android:textColor="@color/blue"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="example@gmail.com" />
+                android:hint="example@gmail.com"
+                android:id="@+id/editEmailLogin"/>
 
         </LinearLayout>
 
@@ -54,13 +56,15 @@
                 android:fontFamily="@font/quicksand_book"
                 android:text="Password"
                 android:textColor="@color/blue"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+               />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint=""
-                android:inputType="numberPassword" />
+                android:inputType="numberPassword"
+                android:id="@+id/editPasswordLogin"/>
 
         </LinearLayout>
 
@@ -71,15 +75,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:gravity="right">
+        >
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/blue"
             android:gravity="center"
             android:text="LOGIN"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:id="@+id/login_LoginFM"/>
     </LinearLayout>
 
     <LinearLayout
@@ -92,7 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/tranparent"
-            android:text="Create a new account" />
+            android:text="Create a new account"
+            android:id="@+id/signUp_LoginFM"/>
     </LinearLayout>
 
 </LinearLayout>

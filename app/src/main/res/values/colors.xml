@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tranparent">#00FFFFFF</color>
     <color name="blue">#050088</color>
+    <color name="blue_click">#3A33FF</color>
     <color name="tranparentblue">#050088</color>
 
 </resources>

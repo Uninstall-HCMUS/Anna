@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/it"
+        android:title="Information Technology" />
+    <item android:id="@+id/math"
+        android:title="Mathematics" />
+    <item android:id="@+id/bio"
+        android:title="Biology" />
+    <item android:id="@+id/chemical"
+        android:title="Chemicals" />
+    <item android:id="@+id/Physical"
+        android:title="Physical" />
+    <item android:id="@+id/law"
+    android:title="Law" />
+    <item android:id="@+id/Economy"
+        android:title="Economy" />
+    <item android:id="@+id/culture"
+        android:title="Culture" />
+    <item android:id="@+id/Travel"
+        android:title="Travel" />
+</menu>
