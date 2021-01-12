@@ -9,6 +9,10 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Anna">
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="ocr" />
+
         <activity android:name=".PreBeginActivity"></activity>
         <activity android:name=".BeginActivity" />
         <activity android:name=".OnBoardingActivity" />
