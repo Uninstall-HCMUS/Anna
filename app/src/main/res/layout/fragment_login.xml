@@ -100,5 +100,10 @@
             android:text="Create a new account"
             android:id="@+id/signUp_LoginFM"/>
     </LinearLayout>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progessbar_SignInFM"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

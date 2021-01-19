@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceManager;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
