@@ -1,13 +1,14 @@
 package com.example.anna;
 
 import android.app.Activity;
-import android.net.ConnectivityManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.anna.data.DBDictionaryManager;
 import com.example.anna.model.Word;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -69,8 +71,12 @@ public class EnglishToVietnameseFragment extends Fragment {
         dbDictionaryManager.createDataBase();
         dbDictionaryManager.openDataBase();
 
-        ListWord = dbDictionaryManager.GetAll();
-        words = dbDictionaryManager.GetAllEnglish();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String department_temp = sharedPreferences.getString(getString(R.string.DEPARTMENT), "");
+
+        ListWord = dbDictionaryManager.GetAll(department_temp);
+        words = dbDictionaryManager.GetAllEnglish(department_temp);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, words);
         txt_SearchBox.setAdapter(arrayAdapter);
