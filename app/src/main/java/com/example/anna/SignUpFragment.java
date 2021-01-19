@@ -1,8 +1,13 @@
 package com.example.anna;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -32,7 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class SignUpFragment extends Fragment {
     MainActivity main;
-    String selectedDepartment="";
+    String selectedDepartment = "";
     private NavController navController;
     Button signUpBtn, signInBtn;
     EditText editEmail, editUsername, editPassword, editRetypePassword;
@@ -105,7 +111,7 @@ public class SignUpFragment extends Fragment {
         progressBar.setVisibility(View.INVISIBLE);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        selectedDepartment = sharedPreferences.getString(getString(R.string.DEPARTMENT),"");
+        selectedDepartment = sharedPreferences.getString(getString(R.string.DEPARTMENT), "");
 
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +123,21 @@ public class SignUpFragment extends Fragment {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerUser();
+                if(isConnected()){
+                    registerUser();
+                }else{
+                    AlertDialog.Builder dlgAlert = new AlertDialog.Builder(getContext());
+                    dlgAlert.setMessage("You need to connect internet to continue");
+                    dlgAlert.setTitle("Warning");
+                    dlgAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    dlgAlert.create().show();
+                }
+
             }
         });
 
@@ -210,5 +230,18 @@ public class SignUpFragment extends Fragment {
                         }
                     }
                 });
+    }
+
+    public boolean isConnected(){
+        boolean connected =false;
+        try {
+            ConnectivityManager cm = (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo nInfor = cm.getActiveNetworkInfo();
+            connected = nInfor !=null&&nInfor.isAvailable()&&nInfor.isConnected();
+            return connected;
+        }catch (Exception e){
+            Log.e("Connectivity Exception",e.getMessage());
+        }
+        return connected;
     }
 }

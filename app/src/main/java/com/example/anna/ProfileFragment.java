@@ -84,6 +84,10 @@ public class ProfileFragment extends Fragment {
                 departmentTextView.setText("");
                 usernameTextView.setText("");
                 logoutBtn.setVisibility(View.INVISIBLE);
+                signInBtn.setVisibility(View.VISIBLE);
+                signUpBtn.setVisibility(View.VISIBLE);
+                signUpBtn.setEnabled(true);
+                signInBtn.setEnabled(true);
             }
         });
 
