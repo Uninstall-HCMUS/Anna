@@ -7,10 +7,10 @@
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <Button
-        android:layout_width="wrap_content"
+    <ListView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/layout_LearnVocabulary"
-        android:text="Button"/>
+        android:id="@+id/listView_Courses_FM"
+        >
+    </ListView>
 </LinearLayout>

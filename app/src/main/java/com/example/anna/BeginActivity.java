@@ -11,10 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.anna.model.CustomDepartmentAdapter;
+import com.example.anna.model.CustomCourseAdapter;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class BeginActivity extends AppCompatActivity {
     String selectedDepartment = "";
@@ -41,7 +40,7 @@ public class BeginActivity extends AppCompatActivity {
                 "Food Technology"
         };
 
-        CustomDepartmentAdapter customDepartmentAdapter = new CustomDepartmentAdapter(BeginActivity.this,R.layout.custom_department, Arrays.asList(departmentList));
+        CustomCourseAdapter customDepartmentAdapter = new CustomCourseAdapter(BeginActivity.this,R.layout.custom_department, Arrays.asList(departmentList));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

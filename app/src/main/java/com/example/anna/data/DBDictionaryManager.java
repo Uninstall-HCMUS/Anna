@@ -208,9 +208,7 @@ public class DBDictionaryManager extends SQLiteOpenHelper {
 
                 }
                 cursor.close();
-            }
-            else
-            {
+            } else {
                 Word word = new Word();
                 word.setmEnglish("Không có từ này trong từ điển");
                 word.setmType("");
@@ -249,5 +247,34 @@ public class DBDictionaryManager extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
         db.close();
         Log.d("123", "Add");
+    }
+
+    public List<Word> GetVocabularies(String department_temp, int quantity) {
+        List<Word> words = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        String SQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + SPECIALIZED_NAME + " = '" + department_temp + "' " + "ORDER BY RANDOM() LIMIT " + quantity;
+        Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
+
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+
+                    int id = cursor.getInt(0);
+                    String english = cursor.getString(1);
+                    String type = cursor.getString(2);
+                    String vietnamese = cursor.getString(3);
+                    String spec = cursor.getString(4);
+                    int star = cursor.getInt(5);
+
+                    Word word = new Word(id, english, type, vietnamese, spec, star);
+                    words.add(word);
+                    cursor.moveToNext();
+                }
+                cursor.close();
+            }
+        }
+        return words;
     }
 }

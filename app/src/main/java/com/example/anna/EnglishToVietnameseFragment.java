@@ -71,7 +71,6 @@ public class EnglishToVietnameseFragment extends Fragment {
         dbDictionaryManager.openDataBase();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
         String department_temp = sharedPreferences.getString(getString(R.string.DEPARTMENT), "");
 
         ListWord = dbDictionaryManager.GetAll(department_temp);

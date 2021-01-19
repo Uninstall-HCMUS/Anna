@@ -1,4 +1,4 @@
-package com.example.anna.model;
+package com.example.anna;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -18,8 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.example.anna.MainActivity;
-import com.example.anna.R;
+import com.example.anna.model.CustomCourseAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -113,7 +112,7 @@ public class SelectDepartmentFragment extends Fragment {
                 "Travel"
         };
 
-        CustomDepartmentAdapter customDepartmentAdapter = new CustomDepartmentAdapter(getContext(), R.layout.custom_department, Arrays.asList(departmentList));
+        CustomCourseAdapter customDepartmentAdapter = new CustomCourseAdapter(getContext(), R.layout.custom_department, Arrays.asList(departmentList));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

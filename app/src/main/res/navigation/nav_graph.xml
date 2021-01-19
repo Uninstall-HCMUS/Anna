@@ -35,7 +35,7 @@
         android:id="@+id/coursesFragment"
         android:name="com.example.anna.CoursesFragment"
         android:label="fragment_courses"
-        tools:layout="@layout/fragment_courses" >
+        tools:layout="@layout/fragment_courses">
         <action
             android:id="@+id/action_coursesFragment_to_learnVocabulary"
             app:destination="@id/learnVocabulary" />
@@ -58,7 +58,7 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.anna.SignUpFragment"
         android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" >
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signUpFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -76,11 +76,11 @@
         android:name="com.example.anna.LearnVocabulary"
         android:label="fragment_learn_vocabulary"
         tools:layout="@layout/fragment_learn_vocabulary" />
-<fragment
+    <fragment
         android:id="@+id/selectDepartmentFragment"
-        android:name="com.example.anna.model.SelectDepartmentFragment"
+        android:name="com.example.anna.SelectDepartmentFragment"
         android:label="fragment_select_department"
-        tools:layout="@layout/fragment_select_department" >
+        tools:layout="@layout/fragment_select_department">
         <action
             android:id="@+id/action_selectDepartmentFragment_to_profileFragment"
             app:destination="@id/profileFragment" />

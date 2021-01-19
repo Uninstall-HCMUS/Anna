@@ -19,13 +19,13 @@ import com.example.anna.R;
 
 import java.util.List;
 
-public class CustomDepartmentAdapter extends ArrayAdapter<String> {
+public class CustomCourseAdapter extends ArrayAdapter<String> {
     private Context context;
     private int resource;
 
     List<String> listDepartment;
 
-    public CustomDepartmentAdapter(@NonNull Context context, int resource, @NonNull List<String> objects) {
+    public CustomCourseAdapter(@NonNull Context context, int resource, @NonNull List<String> objects) {
         super(context, resource, objects);
 
         this.context = context;

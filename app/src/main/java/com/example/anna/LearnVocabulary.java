@@ -1,5 +1,6 @@
 package com.example.anna;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.core.view.MotionEventCompat;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,9 +17,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.anna.data.DBDictionaryManager;
+import com.example.anna.model.Word;
 import com.google.android.material.card.MaterialCardView;
 import com.pedromassango.doubleclick.DoubleClick;
 import com.pedromassango.doubleclick.DoubleClickListener;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,11 +32,18 @@ import com.pedromassango.doubleclick.DoubleClickListener;
  */
 public class LearnVocabulary extends Fragment {
 
+    private final int QUANTITY_OF_VOCABULARIES = 20;
+
     private MaterialCardView vocabularyCard;
     private TextView vocabulary;
+    private TextView vocabularyType;
     private TextView meaning;
     private TextView txtLearnedWords;
     private Button btnRemember;
+    DBDictionaryManager dictionaryManager;
+    List<Word> vocabularies;
+    private int index = 0;
+    private int learnedWords = 0;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -86,9 +99,27 @@ public class LearnVocabulary extends Fragment {
 
         vocabularyCard = view.findViewById(R.id.vocabularyCard);
         vocabulary = view.findViewById(R.id.vocabulary);
+        vocabularyType = view.findViewById(R.id.vocabularyType);
         meaning = view.findViewById(R.id.meaning);
         btnRemember = view.findViewById(R.id.btnRemember);
         txtLearnedWords = view.findViewById(R.id.txtLearnedWords);
+
+        dictionaryManager = new DBDictionaryManager(getActivity());
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String department_temp = sharedPreferences.getString(getString(R.string.DEPARTMENT), "");
+        vocabularies = dictionaryManager.GetVocabularies(department_temp, QUANTITY_OF_VOCABULARIES);
+        for (Word word : vocabularies) {
+            if (word.getIsStar() == 1) {
+                learnedWords++;
+            }
+        }
+        txtLearnedWords.setText(learnedWords + " / " + QUANTITY_OF_VOCABULARIES);
+
+        vocabulary.setText(vocabularies.get(index).getmEnglish());
+        vocabularyType.setText("/" + vocabularies.get(index).getmType() + "/");
+        meaning.setText(vocabularies.get(index).getmVietnamese());
+        vocabularyCard.setChecked(vocabularies.get(index).getIsStar() == 1);
+
 
         vocabularyCard.setOnClickListener(new DoubleClick(new DoubleClickListener() {
             @Override
@@ -112,6 +143,14 @@ public class LearnVocabulary extends Fragment {
             @Override
             public void onClick(View v) {
                 vocabularyCard.setChecked(!vocabularyCard.isChecked());
+                if (vocabularies.get(index).getIsStar() == 1) {
+                    learnedWords--;
+                    vocabularies.get(index).setIsStar(0);
+                } else {
+                    learnedWords++;
+                    vocabularies.get(index).setIsStar(1);
+                }
+                txtLearnedWords.setText(learnedWords + " / " + QUANTITY_OF_VOCABULARIES);
             }
         });
 
@@ -134,13 +173,33 @@ public class LearnVocabulary extends Fragment {
                                 return false;
                             if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                                vocabulary.setText("vuốt từ trái");
+
+                                //vuốt sang trái
+                                if (index != QUANTITY_OF_VOCABULARIES - 1) {
+                                    index++;
+                                } else {
+                                    index = 0;
+                                }
+
                             } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
                                     && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                                vocabulary.setText("vuốt từ phải");
+
+                                //vuốt sang phải
+                                if (index != 0) {
+                                    index--;
+                                } else {
+                                    index = QUANTITY_OF_VOCABULARIES - 1;
+                                }
+
                             }
                         } catch (Exception e) {
                             // nothing
+                        } finally {
+                            vocabulary.setText(vocabularies.get(index).getmEnglish());
+                            vocabularyType.setText("/" + vocabularies.get(index).getmType() + "/");
+                            meaning.setText(vocabularies.get(index).getmVietnamese());
+                            vocabularyCard.setChecked(vocabularies.get(index).getIsStar() == 1);
+                            meaning.setVisibility(View.INVISIBLE);
                         }
                         return super.onFling(e1, e2, velocityX, velocityY);
                     }
