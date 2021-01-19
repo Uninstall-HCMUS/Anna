@@ -32,7 +32,11 @@
         android:id="@+id/coursesFragment"
         android:name="com.example.anna.CoursesFragment"
         android:label="fragment_courses"
-        tools:layout="@layout/fragment_courses" />
+        tools:layout="@layout/fragment_courses" >
+        <action
+            android:id="@+id/action_coursesFragment_to_learnVocabulary"
+            app:destination="@id/learnVocabulary" />
+    </fragment>
     <fragment
         android:id="@+id/lookUpFragment"
         android:name="com.example.anna.LookUpFragment"
@@ -64,4 +68,9 @@
         android:name="com.example.anna.EnglishToVietnameseFragment"
         android:label="fragment_english_to_vietnamese"
         tools:layout="@layout/fragment_english_to_vietnamese" />
+    <fragment
+        android:id="@+id/learnVocabulary"
+        android:name="com.example.anna.LearnVocabulary"
+        android:label="fragment_learn_vocabulary"
+        tools:layout="@layout/fragment_learn_vocabulary" />
 </navigation>

@@ -21,7 +21,8 @@
             android:layout_weight="8"
             android:background="@drawable/custom_textview"
             android:hint="Search"
-            android:padding="10dp" />
+            android:padding="10dp"/>
+
 
         <LinearLayout
 

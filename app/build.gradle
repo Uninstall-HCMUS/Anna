@@ -54,4 +54,5 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-ml-vision:24.1.0'
     implementation 'com.google.firebase:firebase-ml-vision-barcode-model:16.1.2'
+    implementation 'com.github.pedromassango:doubleClick:3.0'
 }
