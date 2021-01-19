@@ -115,10 +115,10 @@ public class DBDictionaryManager extends SQLiteOpenHelper {
         mContext.deleteDatabase(DATABASE_NAME);
     }
 
-    public List<Word> GetAll() {
+    public List<Word> GetAll(String department_temp) {
         List<Word> words = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        String SQL = "SELECT * FROM " + TABLE_NAME;
+        String SQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + SPECIALIZED_NAME + " = '" + department_temp + "'";
         Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
 
         if (cursor != null) {
@@ -144,10 +144,10 @@ public class DBDictionaryManager extends SQLiteOpenHelper {
         return words;
     }
 
-    public List<String> GetAllEnglish() {
+    public List<String> GetAllEnglish(String department_temp) {
         List<String> words = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        String SQL = "SELECT * FROM " + TABLE_NAME;
+        String SQL = "SELECT * FROM " + TABLE_NAME + " WHERE " + SPECIALIZED_NAME + " = '" + department_temp + "'";
         Cursor cursor = sqLiteDatabase.rawQuery(SQL, null);
 
         if (cursor != null) {
