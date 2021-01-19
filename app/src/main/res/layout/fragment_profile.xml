@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <Button
 
@@ -25,12 +26,14 @@
             android:textColor="@color/white" />
 
         <Button
+            android:layout_marginRight="20dp"
             android:id="@+id/signInProfileFm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/blue"
             android:text="SIGN IN"
             android:textColor="@color/white" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -79,7 +82,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/quicksand_book"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:hint="exampleemail@gmail.com"/>
         </LinearLayout>
 
         <LinearLayout
@@ -100,10 +104,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/quicksand_book"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:hint="example_depart"/>
         </LinearLayout>
     </LinearLayout>
-
+    <Button
+        android:layout_gravity="right"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/selectDepart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@color/blue"
+        android:text="CHANGE DEPARTMENT"
+        android:textColor="@color/white"
+        />
     <Button
         android:id="@+id/logout"
         android:layout_width="wrap_content"

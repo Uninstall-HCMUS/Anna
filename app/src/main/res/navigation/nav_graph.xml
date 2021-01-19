@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_profileFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_selectDepartmentFragment"
+            app:destination="@id/selectDepartmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/coursesFragment"
@@ -73,4 +76,16 @@
         android:name="com.example.anna.LearnVocabulary"
         android:label="fragment_learn_vocabulary"
         tools:layout="@layout/fragment_learn_vocabulary" />
+<fragment
+        android:id="@+id/selectDepartmentFragment"
+        android:name="com.example.anna.model.SelectDepartmentFragment"
+        android:label="fragment_select_department"
+        tools:layout="@layout/fragment_select_department" >
+        <action
+            android:id="@+id/action_selectDepartmentFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_selectDepartmentFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

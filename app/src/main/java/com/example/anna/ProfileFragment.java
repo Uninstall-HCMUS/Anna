@@ -28,12 +28,12 @@ public class ProfileFragment extends Fragment {
 
     MainActivity main;
     private NavController navController;
-    Button signUpBtn, signInBtn,logoutBtn;
+    Button signUpBtn, signInBtn, logoutBtn, changeDepart;
     TextView emailTextView, departmentTextView, usernameTextView;
 
     private FirebaseUser user;
     private DatabaseReference reference;
-    private  String userID;
+    private String userID;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -69,19 +69,20 @@ public class ProfileFragment extends Fragment {
         signUpBtn = (Button) view.findViewById(R.id.signUpProfileFm);
         signInBtn = (Button) view.findViewById(R.id.signInProfileFm);
         logoutBtn = (Button) view.findViewById(R.id.logout);
+        changeDepart = (Button) view.findViewById(R.id.selectDepart);
 
-        emailTextView =(TextView)  view.findViewById(R.id.emailProfileFm);
-        departmentTextView =(TextView)  view.findViewById(R.id.departProfileFm);
-        usernameTextView =(TextView)  view.findViewById(R.id.usernameProfileFm);
+        emailTextView = (TextView) view.findViewById(R.id.emailProfileFm);
+        departmentTextView = (TextView) view.findViewById(R.id.departProfileFm);
+        usernameTextView = (TextView) view.findViewById(R.id.usernameProfileFm);
 
         logoutBtn.setVisibility(View.INVISIBLE);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                usernameTextView.setText("");
                 emailTextView.setText("");
                 departmentTextView.setText("");
+                usernameTextView.setText("");
                 logoutBtn.setVisibility(View.INVISIBLE);
             }
         });
@@ -100,9 +101,16 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        changeDepart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_profileFragment_to_selectDepartmentFragment);
+            }
+        });
+
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference  = FirebaseDatabase.getInstance().getReference("User");
-        if(user!=null){
+        reference = FirebaseDatabase.getInstance().getReference("User");
+        if (user != null) {
             userID = user.getUid();
             reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -110,17 +118,18 @@ public class ProfileFragment extends Fragment {
 
                     User userProfile = snapshot.getValue(User.class);
 
-                    if(userProfile!=null){
+                    if (userProfile != null) {
                         String name = userProfile.username;
                         String email = userProfile.email;
                         String depart = userProfile.depart;
-
+                        Toast.makeText(getContext(), depart, Toast.LENGTH_LONG).show();
                         usernameTextView.setText(name);
                         emailTextView.setText(email);
                         departmentTextView.setText(depart);
                         logoutBtn.setVisibility(View.VISIBLE);
-                    }
-                    else{
+                        signInBtn.setVisibility(View.INVISIBLE);
+                        signUpBtn.setVisibility(View.INVISIBLE);
+                    } else {
                         usernameTextView.setText("");
                         emailTextView.setText("");
                         departmentTextView.setText("");
@@ -130,17 +139,13 @@ public class ProfileFragment extends Fragment {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getContext(),"Sometthing wnet wrong.!",Toast.LENGTH_LONG);
-                    usernameTextView.setText("");
-                    emailTextView.setText("");
-                    departmentTextView.setText("");
+                    Toast.makeText(getContext(), "Something went wrong.!", Toast.LENGTH_LONG);
+
 
                 }
             });
-        }else{
-            usernameTextView.setText("");
-            emailTextView.setText("");
-            departmentTextView.setText("");
+        } else {
+
         }
 
 

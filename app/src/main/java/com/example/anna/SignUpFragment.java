@@ -1,12 +1,15 @@
 package com.example.anna;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,10 +32,11 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class SignUpFragment extends Fragment {
     MainActivity main;
+    String selectedDepartment="";
     private NavController navController;
     Button signUpBtn, signInBtn;
     EditText editEmail, editUsername, editPassword, editRetypePassword;
-
+    ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -97,6 +101,11 @@ public class SignUpFragment extends Fragment {
         editUsername = (EditText) view.findViewById(R.id.editNameSignUp);
         editPassword = (EditText) view.findViewById(R.id.editPasswordSignUp);
         editRetypePassword = (EditText) view.findViewById(R.id.editRetypePasswordSignUp);
+        progressBar = (ProgressBar) view.findViewById(R.id.progessbar_SignUpFM);
+        progressBar.setVisibility(View.INVISIBLE);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        selectedDepartment = sharedPreferences.getString(getString(R.string.DEPARTMENT),"");
 
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,33 +176,36 @@ public class SignUpFragment extends Fragment {
         int result = 0;
         signUpBtn.setBackgroundResource(R.color.blue_click);
         signUpBtn.setEnabled(false);
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(username, email, "");
+                            User user = new User(username, email, selectedDepartment);
                             FirebaseDatabase.getInstance().getReference("User")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+                                    progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(getContext(),"User has been registered",Toast.LENGTH_LONG).show();
+
+                                        Toast.makeText(getContext(), "User has been registered", Toast.LENGTH_LONG).show();
                                         signUpBtn.setBackgroundResource(R.color.blue);
                                         signUpBtn.setEnabled(true);
                                         navController.navigate(R.id.action_signUpFragment_to_loginFragment);
                                     } else {
                                         signUpBtn.setEnabled(true);
-                                        Toast.makeText(getContext(),"Register failed",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getContext(), "Register failed", Toast.LENGTH_LONG).show();
                                         signUpBtn.setBackgroundResource(R.color.blue);
                                     }
                                 }
                             });
-                        }
-                        else{
+                        } else {
+                            progressBar.setVisibility(View.GONE);
                             signUpBtn.setEnabled(true);
-                            Toast.makeText(getContext(),"Register failed",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), "Register failed", Toast.LENGTH_LONG).show();
                             signUpBtn.setBackgroundResource(R.color.blue);
                         }
                     }

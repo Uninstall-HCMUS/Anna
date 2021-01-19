@@ -19,7 +19,7 @@ public class PreBeginActivity extends AppCompatActivity {
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PreBeginActivity.this,MainActivity.class);
+                Intent intent = new Intent(PreBeginActivity.this,BeginActivity.class);
                 startActivity(intent);
                 finish();
             }
