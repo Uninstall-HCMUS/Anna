@@ -142,5 +142,10 @@
             android:text="Have already a account?"
             android:id="@+id/login_SignUpFM"/>
     </LinearLayout>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progessbar_SignUpFM"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

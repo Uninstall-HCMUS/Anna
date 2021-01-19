@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linearDepartCustom"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/custom_select_layout"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:layout_margin="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/quicksand_bold"
+            android:gravity="center"
+            android:id="@+id/departmentTxt"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </LinearLayout>
+</LinearLayout>
